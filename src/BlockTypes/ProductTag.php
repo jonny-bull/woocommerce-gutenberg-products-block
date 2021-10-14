@@ -48,6 +48,7 @@ class ProductTag extends AbstractProductGrid {
 				'default' => 'any',
 			),
 			'isPreview'         => $this->get_schema_boolean( false ),
+			'stockStatus'       => $this->get_schema_string( 'any' ),
 		);
 	}
 

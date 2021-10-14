@@ -19,6 +19,7 @@ import GridContentControl from '@woocommerce/editor-components/grid-content-cont
 import GridLayoutControl from '@woocommerce/editor-components/grid-layout-control';
 import ProductAttributeTermControl from '@woocommerce/editor-components/product-attribute-term-control';
 import ProductOrderbyControl from '@woocommerce/editor-components/product-orderby-control';
+import ProductStockControl from '@woocommerce/editor-components/product-stock-control';
 import { gridBlockPreview } from '@woocommerce/resource-previews';
 import { getSetting } from '@woocommerce/settings';
 
@@ -36,6 +37,7 @@ class ProductsByAttributeBlock extends Component {
 			orderby,
 			rows,
 			alignButtons,
+			stockStatus,
 		} = this.props.attributes;
 
 		return (
@@ -100,6 +102,20 @@ class ProductsByAttributeBlock extends Component {
 						value={ orderby }
 					/>
 				</PanelBody>
+				{ getSetting( 'hide_out_of_stock' ) !== 'yes' && (
+					<PanelBody
+						title={ __(
+							'Stock level',
+							'woo-gutenberg-products-block'
+						) }
+						initialOpen={ false }
+					>
+						<ProductStockControl
+							setAttributes={ setAttributes }
+							value={ stockStatus }
+						/>
+					</PanelBody>
+				) }
 			</InspectorControls>
 		);
 	}
